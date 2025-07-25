@@ -1,4 +1,35 @@
 package holidayagency.flights.unit;
 
-public class GetCheapestFlightTest {
+import holidayagency.flights.FlightsFacade;
+import holidayagency.flights.FlightsTestConfig;
+import holidayagency.flights.models.CheapestFlightModel;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+class GetCheapestFlightTest {
+
+    FlightsFacade flightsFacade = new FlightsTestConfig().flightsFacade();
+
+    @Test
+    void oneValidFlightRoute_getCheapestFlight_returnsCheapestFlight() {
+        CheapestFlightModel cheapestFlight = flightsFacade.getCheapestFlight('A', 'B');
+
+        assertEquals(new CheapestFlightModel(10, "AB100"), cheapestFlight);
+    }
+
+    @Test
+    void multipleValidFlightRoutes_getCheapestFlight_returnsCheapestFlight() {
+        CheapestFlightModel cheapestFlight = flightsFacade.getCheapestFlight('C', 'D');
+
+        assertEquals(new CheapestFlightModel(30, "CE100-ED200"), cheapestFlight);
+    }
+
+    @Test
+    void noValidRoute_getCheapestFlight_returnsNull() {
+        CheapestFlightModel cheapestFlight = flightsFacade.getCheapestFlight('A', 'E');
+
+        assertNull(cheapestFlight);
+    }
 }
