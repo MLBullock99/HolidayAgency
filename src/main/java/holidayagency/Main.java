@@ -12,6 +12,7 @@ import holidayagency.vehicle.VehicleFacade;
 
 public class Main {
     public static void main(String[] args) {
+        // Journeys to check
         String[] journeyInputs = new String[] {
                 "2, B20, D",
                 "1, B30, D",
@@ -49,6 +50,7 @@ public class Main {
 
     private static String parseIntToCurrency(int cost) {
         StringBuilder stringBuilder = new StringBuilder(String.valueOf(cost));
+        // add '0's to the start until the length is at least 3, so that 0 is displayed as 0.00
         while(stringBuilder.length() < 3) {
             stringBuilder.insert(0, "0");
         }

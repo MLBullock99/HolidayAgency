@@ -1,6 +1,6 @@
 package holidayagency.flights;
 
-import holidayagency.flights.models.CheapestFlightModel;
+import holidayagency.flights.models.CheapestRouteModel;
 
 class FlightsFacadeImpl implements FlightsFacade {
 
@@ -11,7 +11,7 @@ class FlightsFacadeImpl implements FlightsFacade {
     private final GetFlightsPort getFlightsPort;
 
     @Override
-    public CheapestFlightModel getCheapestFlight(char departureAirport, char destinationAirport) {
+    public CheapestRouteModel getCheapestFlight(char departureAirport, char destinationAirport) {
         return new GetCheapestFlightUseCase(getFlightsPort).getCheapestFlight(departureAirport, destinationAirport);
     }
 }

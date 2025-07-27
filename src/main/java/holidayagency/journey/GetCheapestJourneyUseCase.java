@@ -1,7 +1,7 @@
 package holidayagency.journey;
 
 import holidayagency.flights.FlightsFacade;
-import holidayagency.flights.models.CheapestFlightModel;
+import holidayagency.flights.models.CheapestRouteModel;
 import holidayagency.journey.models.CheapestJourneyModel;
 import holidayagency.journey.models.JourneyModel;
 import holidayagency.vehicle.VehicleFacade;
@@ -21,28 +21,30 @@ class GetCheapestJourneyUseCase {
         JourneyModel journey = parseJourney(journeyString);
 
         CheapestVehicleModel cheapestVehicle = vehicleFacade.getCheapestVehicle(journey.distanceToAirport());
+        // four people per vehicle, multiplied by the cost of one vehicle
         int totalVehicleCost = (journey.numPassengers() / 4 + 1) * cheapestVehicle.costPerVehicle();
 
-        CheapestFlightModel cheapestOutboundFlight = flightsFacade.getCheapestFlight(journey.departureAirport(), journey.destinationAirport());
-        if(cheapestOutboundFlight == null) {
-            cheapestOutboundFlight = new CheapestFlightModel(0, "No outbound flight");
+        CheapestRouteModel cheapestOutboundRoute = flightsFacade.getCheapestFlight(journey.departureAirport(), journey.destinationAirport());
+        // if the route is null then no outbound flight is found
+        if(cheapestOutboundRoute == null) {
+            cheapestOutboundRoute = new CheapestRouteModel(0, "No outbound flight");
         }
-        int totalOutboundFlightCost = cheapestOutboundFlight.costPerPassenger() * journey.numPassengers();
+        int totalOutboundRouteCost = cheapestOutboundRoute.costPerPassenger() * journey.numPassengers();
 
-        CheapestFlightModel cheapestInboundFlight = flightsFacade.getCheapestFlight(journey.destinationAirport(), journey.departureAirport());
-        if(cheapestInboundFlight == null) {
-            cheapestInboundFlight = new CheapestFlightModel(0, "No inbound flight");
+        CheapestRouteModel cheapestInboundRoute = flightsFacade.getCheapestFlight(journey.destinationAirport(), journey.departureAirport());
+        if(cheapestInboundRoute == null) {
+            cheapestInboundRoute = new CheapestRouteModel(0, "No inbound flight");
         }
-        int totalInboundFlightCost = cheapestInboundFlight.costPerPassenger() * journey.numPassengers();
+        int totalInboundRouteCost = cheapestInboundRoute.costPerPassenger() * journey.numPassengers();
 
-        int totalCost = totalOutboundFlightCost == 0 || totalInboundFlightCost == 0
+        int totalCost = totalOutboundRouteCost == 0 || totalInboundRouteCost == 0
             ? 0
-            : totalVehicleCost + totalOutboundFlightCost + totalInboundFlightCost;
+            : totalVehicleCost + totalOutboundRouteCost + totalInboundRouteCost;
 
         return new CheapestJourneyModel(
                 cheapestVehicle.vehicle(), totalVehicleCost,
-                cheapestOutboundFlight.route(), totalOutboundFlightCost,
-                cheapestInboundFlight.route(), totalInboundFlightCost,
+                cheapestOutboundRoute.route(), totalOutboundRouteCost,
+                cheapestInboundRoute.route(), totalInboundRouteCost,
                 totalCost
         );
     }
@@ -50,6 +52,7 @@ class GetCheapestJourneyUseCase {
     private JourneyModel parseJourney(String journey) {
         String[] journeyDetails = journey.split(",");
 
+        // getting the values from journeyDetails, trimming the whitespace from the content
         int numPassengers = Integer.parseInt(journeyDetails[0].trim());
         char departureAirport = journeyDetails[1].trim().charAt(0);
         int distanceToAirport = Integer.parseInt(journeyDetails[1].trim().substring(1));

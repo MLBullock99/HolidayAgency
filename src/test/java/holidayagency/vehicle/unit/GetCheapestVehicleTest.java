@@ -13,12 +13,12 @@ public class GetCheapestVehicleTest {
 
     @Test
     public void distanceWhereTaxiIsCheaper_getCheapestVehicle_returnsTaxiAndCost() {
-        assertEquals(new CheapestVehicleModel("Taxi", 400), vehicleFacade.getCheapestVehicle(10));
+        assertEquals(new CheapestVehicleModel("Taxi", 400), vehicleFacade.getCheapestVehicle(5));
     }
 
     @Test
     public void distanceWhereCarIsCheaper_getCheapestVehicle_returnsCarAndCost() {
-        assertEquals(new CheapestVehicleModel("Car", 700), vehicleFacade.getCheapestVehicle(20));
+        assertEquals(new CheapestVehicleModel("Car", 1100), vehicleFacade.getCheapestVehicle(20));
     }
 
 }

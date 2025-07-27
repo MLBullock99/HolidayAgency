@@ -1,9 +1,9 @@
 package holidayagency.flights;
 
-import holidayagency.flights.models.CheapestFlightModel;
+import holidayagency.flights.models.CheapestRouteModel;
 
 public interface FlightsFacade {
 
-    CheapestFlightModel getCheapestFlight(char departureAirport, char destinationAirport);
+    CheapestRouteModel getCheapestFlight(char departureAirport, char destinationAirport);
 
 }
