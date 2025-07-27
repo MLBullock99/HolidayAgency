@@ -29,9 +29,6 @@ class GetCheapestFlightUseCase {
         List<FlightDetailsModel> availableFlights = flightsFromAirports.get(currentAirport);
 
         while(!availableFlights.isEmpty()) {
-            System.out.println(cheapestFlightToAirports);
-            System.out.println(availableFlights);
-
             availableFlights.sort(
                     Comparator.comparingInt(a -> (cheapestFlightToAirports.get(a.departureAirport()).costPerPassenger() + a.distance() * 10))
             );
