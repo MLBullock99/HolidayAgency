@@ -33,6 +33,8 @@ public class Main {
 
         JourneyFacade journeyFacade = JourneyConfig.journeyFacade(vehicleFacade, flightsFacade);
 
+        System.out.println("# | vehicle | vehicle return cost | outbound route | outbound cost | inbound route | inbound cost | total cost");
+
         for(int i = 0; i < journeyInputs.length; i++){
             System.out.println((i + 1) + parseOutput(journeyFacade.getCheapestJourney(journeyInputs[i])));
         }
