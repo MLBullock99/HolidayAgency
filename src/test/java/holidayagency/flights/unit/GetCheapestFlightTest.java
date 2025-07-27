@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 class GetCheapestFlightTest {
 
-    FlightsFacade flightsFacade = new FlightsTestConfig().flightsFacade();
+    FlightsFacade flightsFacade = new FlightsTestConfig().flightsTestFacade();
 
     @Test
     void oneValidFlightRoute_getCheapestFlight_returnsCheapestFlight() {
