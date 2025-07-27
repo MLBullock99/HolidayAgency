@@ -32,4 +32,34 @@ public class GetCheapestJourneyTest {
         );
         assertEquals(expectedOutput, journeyFacade.getCheapestJourney("5, A10, B"));
     }
+    @Test
+    public void journeyWithNoOutbound_getCheapestJourney_returnsJourneyDetailsWithNoOutbound() {
+        CheapestJourneyModel expectedOutput = new CheapestJourneyModel(
+                "Taxi", 1000,
+                "No outbound flight", 0,
+                "DC500", 5000,
+                0
+        );
+        assertEquals(expectedOutput, journeyFacade.getCheapestJourney("1, C10, D"));
+    }
+    @Test
+    public void journeyWithNoInbound_getCheapestJourney_returnsJourneyDetailsWithNoInbound() {
+        CheapestJourneyModel expectedOutput = new CheapestJourneyModel(
+                "Taxi", 1000,
+                "DC500", 5000,
+                "No inbound flight", 0,
+                0
+        );
+        assertEquals(expectedOutput, journeyFacade.getCheapestJourney("1, D10, C"));
+    }
+    @Test
+    public void journeyWithNoOutboundOrInbound_getCheapestJourney_returnsJourneyDetailsWithNoOutboundOrInbound() {
+        CheapestJourneyModel expectedOutput = new CheapestJourneyModel(
+                "Taxi", 1000,
+                "No outbound flight", 0,
+                "No inbound flight", 0,
+                0
+        );
+        assertEquals(expectedOutput, journeyFacade.getCheapestJourney("1, C10, E"));
+    }
 }

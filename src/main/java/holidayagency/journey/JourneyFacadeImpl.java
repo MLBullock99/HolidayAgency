@@ -15,7 +15,7 @@ class JourneyFacadeImpl implements JourneyFacade {
     }
 
     @Override
-    public CheapestJourneyModel getCheapestJourney(String journey) {
-        return null;
+    public CheapestJourneyModel getCheapestJourney(String journeyString) {
+        return new GetCheapestJourneyUseCase(vehicleFacade, flightsFacade).getCheapestJourney(journeyString);
     }
 }

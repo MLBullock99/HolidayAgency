@@ -7,6 +7,9 @@ class MockFlightsFacade implements FlightsFacade {
 
     @Override
     public CheapestFlightModel getCheapestFlight(char departureAirport, char destinationAirport) {
-        return new CheapestFlightModel(500, departureAirport + destinationAirport + "500");
+        if(departureAirport == 'C' || departureAirport == 'E') {
+            return null;
+        }
+        return new CheapestFlightModel(5000, String.valueOf(departureAirport) + destinationAirport + "500");
     }
 }
