@@ -1,8 +1,8 @@
 package holidayagency.vehicle;
 
-public class VehicleTestConfig {
+public final class VehicleTestConfig {
 
-    public VehicleFacade vehiclesTestFacade(){
-        return VehicleConfig.vehicleFacade(new TestVehicleRepository());
+    public static VehicleFacade vehiclesTestFacade(){
+        return VehicleConfig.vehicleFacade();
     }
 }

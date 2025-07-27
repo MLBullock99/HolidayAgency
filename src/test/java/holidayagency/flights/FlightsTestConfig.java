@@ -1,8 +1,8 @@
 package holidayagency.flights;
 
-public class FlightsTestConfig {
+public final class FlightsTestConfig {
 
-    public FlightsFacade flightsTestFacade(){
+    public static FlightsFacade flightsTestFacade(){
         return FlightsConfig.flightsFacade(new TestFlightRepository());
     }
 }

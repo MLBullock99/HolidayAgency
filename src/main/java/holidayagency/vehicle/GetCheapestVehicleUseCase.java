@@ -2,11 +2,9 @@ package holidayagency.vehicle;
 
 import holidayagency.vehicle.models.CheapestVehicleModel;
 
-class VehicleFacadeImpl implements VehicleFacade {
+class GetCheapestVehicleUseCase {
 
-    @Override
     public CheapestVehicleModel getCheapestVehicle(int distance) {
-        return new GetCheapestVehicleUseCase().getCheapestVehicle(distance);
+        return null;
     }
-
 }
