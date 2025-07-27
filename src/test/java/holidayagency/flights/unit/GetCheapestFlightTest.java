@@ -16,14 +16,14 @@ class GetCheapestFlightTest {
     void oneValidFlightRoute_getCheapestFlight_returnsCheapestFlight() {
         CheapestFlightModel cheapestFlight = flightsFacade.getCheapestFlight('A', 'B');
 
-        assertEquals(new CheapestFlightModel(10, "AB100"), cheapestFlight);
+        assertEquals(new CheapestFlightModel(1000, "AB100"), cheapestFlight);
     }
 
     @Test
     void multipleValidFlightRoutes_getCheapestFlight_returnsCheapestFlight() {
         CheapestFlightModel cheapestFlight = flightsFacade.getCheapestFlight('C', 'D');
 
-        assertEquals(new CheapestFlightModel(30, "CE100-ED200"), cheapestFlight);
+        assertEquals(new CheapestFlightModel(3000, "CE100--ED200"), cheapestFlight);
     }
 
     @Test

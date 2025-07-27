@@ -4,14 +4,14 @@ import holidayagency.flights.models.CheapestFlightModel;
 
 class FlightsFacadeImpl implements FlightsFacade {
 
-    public FlightsFacadeImpl(FlightsRepository flightsRepository) {
-        this.flightsRepository = flightsRepository;
+    public FlightsFacadeImpl(GetFlightsPort getFlightsPort) {
+        this.getFlightsPort = getFlightsPort;
     }
 
-    FlightsRepository flightsRepository;
+    private final GetFlightsPort getFlightsPort;
 
     @Override
     public CheapestFlightModel getCheapestFlight(char departureAirport, char destinationAirport) {
-        return null;
+        return new GetCheapestFlightUseCase(getFlightsPort).getCheapestFlight(departureAirport, destinationAirport);
     }
 }

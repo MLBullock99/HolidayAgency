@@ -1,12 +1,12 @@
 package holidayagency.flights;
 
-import holidayagency.flights.models.FlightDetailsModel;
-
-import java.util.List;
-
-class FlightsRepositoryImpl implements FlightsRepository{
+public class FlightsRepositoryImpl implements FlightsRepository{
     @Override
-    public List<FlightDetailsModel> getAllFlights() {
-        return List.of();
+    public String[] getAllFlights() {
+        return new String[] {
+            "AB800", "BC900", "CD400", "DE400",
+            "BF400", "E300", "DE300", "EB600",
+            "CE200", "DC700", "EB500", "FD200"
+        };
     }
 }
